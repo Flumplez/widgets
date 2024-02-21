@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Widget</title>
+<style>
+  /* Reset default margin and padding */
+  body, ul {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+  }
+
+  body {
+    background-color: #000000;
+  }
+
+  /* Style for widget container */
+  .widget-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 1200px;
+  }
+
+  /* Style for widget column */
+  .widget-column {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  /* Style for image container */
+  .image-container {
+    position: relative;
+  }
+
+  /* Style for image */
+  .widget-image {
+    width: 100%;
+    height: 250px; /* Adjust height as needed */
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Style for title */
+  .widget-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 20px 0 20px; /* Adjust padding to position title */
+    color: #000000;
+    text-align: center;
+  }
+
+  /* Style for list */
+  .widget-list {
+    padding: 20px;
+    padding-top: 0; /* Remove top padding */
+  }
+
+  /* Style for list items */
+  .widget-list-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  /* Style for checkmark icon */
+  .checkmark-icon,
+  .info-icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .info-icon-not-interactable {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #333;
+  }
+
+  /* Style for info icon */
+  .info-icon {
+    cursor: pointer;
+    padding-left: 5px;
+  }
+
+  /* Style for hover effect on info icon */
+  .info-icon:hover {
+    opacity: 70%;
+  }
+
+  /* Style for popup */
+  .popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 10px;
+    z-index: 9999;
+    overflow-y: auto;
+  }
+
+  /* Style for close button */
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    padding-right: 5px;
+    padding-top: 5px;
+  }
+
+  /* Style for button container */
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px; /* Add padding to the bottom */
+  }
+
+  /* Style for price text */
+  .price-text {
+    text-align: center;
+    font-size: 36px;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin bottom */
+  }
+
+  /* Style for pound symbol */
+  .pound-symbol {
+    font-size: 24px;
+    vertical-align: 8px;
+    margin-right: 5px;
+  }
+
+  /* Style for button */
+  .black-button {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px;
+    display: inline-block;
+  }
+
+  .black-button-and-price-container-1and3 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Hover effect for button */
+  .black-button:hover {
+    background-color: #333;
+  }
+
+  @media screen and (max-width: 768px) {
+    .widget-column {
+      width: 100%; /* Make each column take up the full width on smaller screens */
+      margin-right: 0; /* Remove right margin to prevent extra spacing between columns */
+    }
+
+  @media screen and (max-width: 768px) {
+    .black-button-and-price-container-1and3 {
+        position: relative; /* Change to relative positioning */
+        margin-top: auto; /* Move to the bottom */
+        text-align: center; /* Center align the content */
+        padding-bottom: 20px; /* Add padding to the bottom */
+    }
+    }
+    
+
+    .price-text {
+      margin-top: 0; /* Remove top margin to prevent overlapping */
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="widget-container">
+  <div class="widget-column">
+    <div class="image-container">
+      <img class="widget-image" src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d60b11bdb6e89691a7526b_Nicole_31804.jpg" alt="Headshot Image">
+    </div>
+    <div class="widget-title">Quick-Fire Spotlight Headshot</div>
+    <ul class="widget-list">
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>15 minute consultation</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>45 minute shoot</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Complimentary Refreshments</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Studio Based</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Online Private Gallery</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Beauty Mirror / Rail / Steamer</li>
+      <li class="widget-list-item">
+        <span class="info-icon-not-interactable"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ee54d79655b289c00667_info.png"/></span>
+          <span class="info-text">Full Shoot Specification</span>
+          <span class="info-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5f1619312e60b53d20d1f_question.png"/></span>
+        <div class="popup">
+          <span class="popup-close">×</span>
+          <p>
+            Within this package, you get a 15-minute consultation. This is where Mark Wheelwright, the photographer, and the client discuss the desired looks, styles, and results for the photoshoot.
+          </p>
+          <p>
+            The pre-shoot consultation and planning phase is a beneficial period as it allows to establish a clear prospect, as well as to ensure both parties are within the same page.
+          </p>
+          <p>
+            Afterwards comes the 45-minute photoshoot, which takes place within the studio space in central Leeds, provided with drinks and refreshments to provide maximum comfort and assurance whilst remaining in a professional setting.
+          </p>
+          <p>
+            Additionally, this allows you to relax and for us to get to know more about you and unique offer & personality.
+          </p>
+          <p>
+            Throughout the shoot, the photographer Mark will assist and guide you through a variety of poses, head positions and lighting set-ups ensuring that there are a variety of options to choose from for their desired results.
+          </p>
+          <p>
+            This would be greatly beneficial, especially for clients who are in the creative industry such as actors, due to the fact that they could perform distinct expressions that are best suitable for them and the roles they aim to achieve for.
+          </p>
+          <p>
+            Lastly, the photographer will send you a you a private link to a gallery page  where all the images can be reviewed and selected.
+          </p>
+          <p>
+            The final selection of 10 standout images will show the best of your character. Following selection the images will be edited and even re-touched to your unique specification.
+          </p>
+          <p>
+            (enhanced re-touching may be extra depending on specification) at £25ph)
+          </p>
+        </div>
+      </li>
+    </ul>
+    
+    <div class="black-button-and-price-container-1and3">
+        <!-- Price text -->
+        <div class="price-text">
+        <span class="pound-symbol">£</span><span class="price-number">175</span>
+        </div>
+        <!-- Button -->
+        <div class="button-container">
+        <a href="https://calendly.com/airestreetstudioleeds/headshots-package-1?back=1&month=2023-05" class="black-button">Book Now</a>
+        </div>
+    </div>
+    
+  </div>
+  <div class="widget-column">
+    <div class="image-container">
+      <img class="widget-image" src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d60d15ae65f7083fe1618b_Mashael_Low_Res_DSC_5054.jpg" alt="Headshot Image">
+    </div>
+    <div class="widget-title">In-Depth Headshot Experience</div>
+    <ul class="widget-list">
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>15 minute consultation</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>60 minute shoot</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Complimentary Refreshments</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>20 Edited Images (Licenced)</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Clothing changes / Looks / Unlmited</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Online Private Gallery</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Beauty Mirror / Rail / Steamer</li>
+      <li class="widget-list-item">
+        <span class="info-icon-not-interactable"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ee54d79655b289c00667_info.png"/></span>
+          <span class="info-text">Full Shoot Specification</span>
+          <span class="info-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5f1619312e60b53d20d1f_question.png"/></span>
+        <div class="popup">
+          <span class="popup-close">×</span>
+          <p>
+            This package builds on the Quickfire Headshot Package and allows the client a little extra studio and location time to create more looks and time for more creativity!           </p>
+          <p>
+            Furthermore, this headshot session is devised for individuals who are seeking a diverse range of high-Thisquality images that highlights the client’s personal brand, whilst keeping it professional. To begin with, this package starts with a 15-minute consultation between the photographer and the client to discuss a clear vision and preferences, to ensure a satisfied and effective experience from both parties. 
+            Moving on, the 90-minute photoshoot consists of exploring a variety of poses, angles, expressions, as well as different backgrounds in the Leeds-based photography studio, in order to capture the client’s desired images whilst engaging with their unique personality and distinct style.          </p>
+          <p>
+            Lastly, the client would then be given a link to a confidential web page of all the images retained from the photoshoot, allowing the client to carefully self-select 20 images that they wish for the photographer to re-touch into a final stunning professional product. With the fact that it is 20 expertly retouched images, the clients would have a flexible selection of images to choose from, which is a perfect fit across multiple purposes and platforms.          </p>
+        </div>
+      </li>
+    </ul>
+    <!-- Price text -->
+    <div class="price-text">
+      <span class="pound-symbol">£</span><span class="price-number">250</span>
+    </div>
+    <!-- Button -->
+    <div class="button-container">
+      <a href="https://calendly.com/airestreetstudioleeds/headshotpackage2?back=1&month=2023-05" class="black-button">Book Now</a>
+    </div>
+  </div>
+  <div class="widget-column">
+    <div class="image-container">
+      <img class="widget-image" src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d627a69ed80d2a083429ed_Billie-Headshots38190-min.jpg" alt="Headshot Image">
+    </div>
+    <div class="widget-title">Young Actor Headshot Masterclass</div>
+    <ul class="widget-list">
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>15 minute consultation</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>60 minute shoot</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Studio based</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Online Private Gallery</li>
+      <li class="widget-list-item"><span class="checkmark-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ecf8ec72337ceb684ccc_check-mark%20(2).png"/></span>Beauty Mirror / Rail / Steamer</li>
+      <li class="widget-list-item">
+        <span class="info-icon-not-interactable"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5ee54d79655b289c00667_info.png"/></span>
+          <span class="info-text">Full Shoot Specification</span>
+          <span class="info-icon"><img src="https://uploads-ssl.webflow.com/65a552322858793773f1eeb1/65d5f1619312e60b53d20d1f_question.png"/></span>
+        <div class="popup">
+          <span class="popup-close">×</span>
+          <p>
+            The young actor headshot package is designed to focus on showcasing the budding and growing talent of the young individual, whilst capturing the essence of the talent and personality.
+          </p>
+          <p>
+            An extra acting coaching professional is available for the first 60 minutes to help the subject prepare. Beya or Devon (Young Actors on Spotlight) 
+          </p>
+          <p>
+            Furthermore, this session would begin with a 15-minute consultation between the photographer, the actor and the actor’s guardian to discuss specific visions, style and preferences, as well as any additional information that the photographer should be made aware of. 
+          </p>
+          <p>
+            After the consultation, comes the 60-minute shoot in the Leeds-based studio, which consists of experimenting with a variety of poses, expressions, as well as backgrounds that benefits the actor’s image, focusing on bringing out their charisma and versatility through the lens.
+            Throughout the photoshoot, refreshments and drinks would be provided in order to increase comfort, alongside any assistance from the photographer in order to help capture the ideal images and angles of the talent. 
+          </p>
+          <p>
+            Finally, at the end of the session, a private web page link will be provided and delivered to the client’s guardian where all the images from the photoshoot reside, allowing the client and their guardian to handpick 20 images to be re-touched by the photographer, ensuring every shot is polished, professional and within the right dimensions. Within the acting world, especially with Spotlight requiring it, the industry standard for headshots is to be in 8x10” portrait format, which will be taken into account and prepared before sending the re-touched images back to the client.
+            Additionally, these professional young actor headshots are not only suitable and perfect for casting submissions, but they also serve as a value to the actor’s portfolio, which highlights their ever-growing potential, as well as to allow them to stand out within the competitive industry.
+          </p>
+        </div>
+      </li>
+    </ul>
+    <div class="black-button-and-price-container-1and3">
+        <!-- Price text -->
+        <div class="price-text">
+        <span class="pound-symbol">£</span><span class="price-number">295</span>
+        </div>
+        <!-- Button -->
+        <div class="button-container">
+        <a href="https://calendly.com/airestreetstudioleeds/headshot-package-2-clone?back=1&month=2024-02" class="black-button">Book Now</a>
+    </div>
+
+    </div>
+    
+  </div>
+</div>
+
+<script>
+
+const infoIcons = document.querySelectorAll('.info-icon');
+  const popups = document.querySelectorAll('.popup');
+  const popupCloses = document.querySelectorAll('.popup-close');
+
+  infoIcons.forEach((icon, index) => {
+    icon.addEventListener('click', () => {
+      popups[index].style.display = 'block';
+    });
+  });
+
+  popupCloses.forEach((closeBtn) => {
+    closeBtn.addEventListener('click', () => {
+      closeBtn.parentElement.style.display = 'none';
+    });
+  });
+</script>
+
+</body>
+</html>
